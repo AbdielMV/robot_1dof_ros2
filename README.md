@@ -27,11 +27,11 @@ First, we build the "body" of the robot and its physical environment.
     mkdir -p robot_1dof_sim/urdf robot_1dof_sim/launch robot_1dof_sim/config robot_1dof_sim/rviz
     ```
 3. **Define the Robot (URDF):** 
-Create the file `robot_1dof_sim/urdf/1dof_robot.urdf`.
-    **- Links:** Define mass, inertia, and visual shapes.
-    **- Joints:** Define the rotation axis (Z-axis).
-    **ros2_control:** Maps the virtual motor to the hardware plugin.
-    **IMU Sensor:** Attached to link1 to measure angular velocity.
+Create the file ``robot_1dof_sim/urdf/1dof_robot.urdf``.
+    - **Links:** Define mass, inertia, and visual shapes.
+    - **Joints:** Define the rotation axis (Z-axis).
+    - **ros2_control:** Maps the virtual motor to the hardware plugin.
+    - **IMU Sensor:** Attached to link1 to measure angular velocity.
 4. **Configure Controllers (YAML):**
 Create `robot_1dof_sim/config/controllers.yaml`. This file defines the `torque_controller` (ForwardCommandController) acting on `joint1` with an `effort` interface.
 
@@ -46,8 +46,8 @@ Now, we create the "brain" using Python.
     ```
 2. **Program the Control Node:**
     Create ``robot_1dof_control/robot_1dof_control/control_senoidal_imu.py``. This script:
-    **Publishes:** A sine wave signal $\tau(t) = A \sin(\omega t)$ to ``/torque_controller/commands``.
-    **Subscribes:** To the IMU topic ``/link1/ruido_imu`` to monitor system response.
+    - **Publishes:** A sine wave signal $\tau(t) = A \sin(\omega t)$ to ``/torque_controller/commands``.
+    - **Subscribes:** To the IMU topic ``/link1/ruido_imu`` to monitor system response.
 
 ---
 
@@ -86,5 +86,5 @@ To see real-time graphs of **Torque Input vs. IMU Velocity Output**, open a thir
 ```bash
 ros2 run rqt_plot rqt_plot
 ```
-- **- Topic 1:** ``/torque_controller/commands/data[0]`` (Applied Torque)
-- **- Topic 2:** ``/link1/ruido_imu/angular_velocity/z`` (System Response)
+- **Topic 1:** ``/torque_controller/commands/data[0]`` (Applied Torque)
+- **Topic 2:** ``/link1/ruido_imu/angular_velocity/z`` (System Response)
