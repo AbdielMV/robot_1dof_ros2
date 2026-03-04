@@ -66,13 +66,13 @@ Ensure ``robot_1dof_sim/CMakeLists.txt`` includes the installation of ``urdf``, 
 
 ## 🚀 Phase 4: Launching (Serving the Dish)
 You will need two separate terminals.
-1. **Terminal 1: The Physical Plant (Gazebo + Robot)**
+- **Terminal 1: The Physical Plant (Gazebo + Robot)**
         ```bash
         source ~/robot_1dof_ws/install/setup.bash
         ros2 launch robot_1dof_sim spawn_robot.launch.py
         ```
     *The pendulum will spawn and drop due to gravity.*
-2. **Terminal 2: The Controller (The Brain)**
+- **Terminal 2: The Controller (The Brain)**
         ```bash
         source ~/robot_1dof_ws/install/setup.bash
         ros2 run robot_1dof_control control_senoidal_imu
