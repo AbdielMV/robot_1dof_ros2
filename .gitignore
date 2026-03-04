@@ -1,0 +1,16 @@
+# Archivos de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Entornos de desarrollo
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Compilados de ROS 2 (por si alguien inicializa git en la raíz por error)
+build/
+install/
+log/

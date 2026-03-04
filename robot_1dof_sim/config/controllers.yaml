@@ -1,0 +1,34 @@
+# ==============================================================================
+# CONFIGURACIÓN DEL GESTOR DE CONTROLADORES (CONTROLLER MANAGER)
+# ==============================================================================
+controller_manager:
+  ros__parameters:
+    # Frecuencia del lazo de control principal en Hz. 
+    # 1000 Hz (1 ms) es estándar para dinámicas rápidas y control de torque.
+    update_rate: 1000  
+    
+    # CRÍTICO PARA GAZEBO: Le dice al gestor que use el reloj de la simulación
+    use_sim_time: true 
+
+    # 1. Publicador de estados (Sensor virtual)
+    # Lee state_interfaces (position, velocity, effort) y los publica en el tópico /joint_states
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    # 2. Tu controlador de inyección de torque
+    torque_controller:
+      type: forward_command_controller/ForwardCommandController
+
+# ==============================================================================
+# PARÁMETROS ESPECÍFICOS DEL CONTROLADOR DE TORQUE
+# ==============================================================================
+torque_controller:
+  ros__parameters:
+    # ¡ATENCIÓN ALUMNOS! Como es un péndulo simple (1-DOF), SOLO declaramos joint1.
+    # Si dejan articulaciones inexistentes, el controlador fallará al cargar.
+    joints:
+      - joint1
+    
+    # Qué tipo de interfaz de hardware va a atacar. 
+    # Coincide con el <command_interface name="effort"/> de tu URDF.
+    interface_name: effort
