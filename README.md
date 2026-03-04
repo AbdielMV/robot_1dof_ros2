@@ -86,5 +86,5 @@ To see real-time graphs of **Torque Input vs. IMU Velocity Output**, open a thir
 ```bash
 ros2 run rqt_plot rqt_plot
 ```
-**- Topic 1:** ``/torque_controller/commands/data[0]`` (Applied Torque)
-**- Topic 2:** ``/link1/ruido_imu/angular_velocity/z`` (System Response)
+- **- Topic 1:** ``/torque_controller/commands/data[0]`` (Applied Torque)
+- **- Topic 2:** ``/link1/ruido_imu/angular_velocity/z`` (System Response)
