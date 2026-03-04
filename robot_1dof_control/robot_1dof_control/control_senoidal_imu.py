@@ -41,22 +41,20 @@ class ControlPenduloIMU(Node):
     def lazo_de_control(self):
         self.tiempo += 0.01
         
-        # Ecuación de la señal senoidal: tau = Amplitud * sin(Frecuencia * tiempo)
-        amplitud = 2.0   # Newton-metro
-        frecuencia = 2.0 # Radianes por segundo
+        # --- CAMBIO PARA LA PRUEBA ---
+        # La amplitud ahora crece 0.1 Nm por cada segundo de simulación
+        amplitud_dinamica = 1.0 + (0.1 * self.tiempo) 
+        frecuencia = 2.0 
         
-        tau = amplitud * math.sin(frecuencia * self.tiempo)
+        tau = amplitud_dinamica * math.sin(frecuencia * self.tiempo)
+        # -----------------------------
         
-        # Empaquetamos el torque en el arreglo que exige el controlador
         msg_torque = Float64MultiArray()
         msg_torque.data = [tau]
-        
-        # Publicamos el comando
         self.publisher_.publish(msg_torque)
         
-        # Imprimimos en pantalla para monitorear el sistema
         self.get_logger().info(
-            f'Torque: {tau:+.2f} Nm  |  IMU Vel Z: {self.velocidad_angular_z:+.2f} rad/s'
+            f'Amplitud: {amplitud_dinamica:.2f} | Torque: {tau:+.2f} Nm | Vel Z: {self.velocidad_angular_z:+.2f}'
         )
 
 def main(args=None):
